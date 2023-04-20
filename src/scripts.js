@@ -1,11 +1,26 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
+import { dataFetch } from './apiCalls.js';
+import Travelers from './Travelers';
+import Trips from './Trips';
+import Destinations from './Destinations';
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+let date = new Date();
+let currentDate = date.getFullYear() + "/" + ("0" + (date.getMonth()+1)).slice(-2) + "/"+ ("0" + date.getDate()).slice(-2);
+let travelers, trips, destinations;
 
+window.addEventListener('load', function () {
+  Promise.all([dataFetch('travelers'), dataFetch('trips'), dataFetch('destinations')])
+  .then(data => {
+    travelers = new Travelers (data[0].travelers);
+    trips = new Trips(data[1].trips);
+    destinations = new Destinations(data[2].destinations);
+    updateDOM()
+  });
+});
 
-console.log('This is the JavaScript entry file - your code begins here.');
+function updateDOM() {
+  console.log(travelers)
+  console.log(trips)
+  console.log(destinations)
+}
+

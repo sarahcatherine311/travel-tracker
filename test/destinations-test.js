@@ -42,6 +42,17 @@ describe('Destinations', function() {
     expect(destinations.destinations[0].alt).to.equal("overview of city buildings with a clear sky");
   });
 
+  it('should be able to return a destinations info from an id', function() {
+    expect(destinations.getDestinationInfo(1)).to.deep.equal({
+      "id": 1,
+      "destination": "Lima, Peru",
+      "estimatedLodgingCostPerDay": 70,
+      "estimatedFlightCostPerPerson": 400,
+      "image": "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
+      "alt": "overview of city buildings with a clear sky"
+      });
+  });
+
   it('should be able to calculate the total cost of the destination based on the destination id, number of travelers, and duration of the trip', function() {
     expect(destinations.getCostOfDestination(1, 2, 10)).to.equal(1650);
   });

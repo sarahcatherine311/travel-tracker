@@ -3,6 +3,10 @@ class Destinations {
     this.destinations = destinationsData;
   }
 
+  getDestinationInfo(destinationID) {
+    return this.destinations.find(destination => destination.id === destinationID)
+  }
+
   getCostOfDestination(destinationID, numTravelers, duration) {
     const destination = this.destinations.find(destination => destination.id === destinationID);
     const lodgingCost = destination.estimatedLodgingCostPerDay * duration;

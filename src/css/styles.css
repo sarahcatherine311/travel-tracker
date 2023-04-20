@@ -27,7 +27,7 @@ header {
 .header-welcome {
   background-color: rgb(255, 255, 255);
   font-size: 2.5em;
-  width: 30%;
+  width: 50%;
   padding: 1%;
   display: flex;
   justify-content: center;
@@ -47,7 +47,7 @@ header {
   margin: 5% 5% 0% 5%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: start;
   padding: 25px;
   overflow: scroll;
 }

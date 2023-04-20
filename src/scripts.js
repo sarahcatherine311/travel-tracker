@@ -23,9 +23,6 @@ window.addEventListener('load', function () {
 });
 
 function updateDOM() {
-  console.log(travelers)
-  console.log(trips)
-  console.log(destinations)
   generateRandomUser();
   showPastTrips();
   showTotalSpent();
@@ -34,7 +31,6 @@ function updateDOM() {
 
 function generateRandomUser() {
   newUser = travelers.getTravelerInfo(Math.floor(Math.random() * travelers.travelers.length));
-  console.log(newUser)
 };
 
 function displayWelcomeMessage() {
@@ -44,7 +40,11 @@ function displayWelcomeMessage() {
 function showPastTrips() {
   const pastTrips = trips.getPastTrips(newUser.id);
   pastTrips.forEach(trip => {
-    pastTripsList.innerHTML += `<li>${trip.date}: ${destinations.getDestinationInfo(trip.destinationID).destination}</li>`;
+    const destinationInfo = destinations.getDestinationInfo(trip.destinationID);
+    pastTripsList.innerHTML += `
+    <li style="font-size: 1.5em">${trip.date}: ${destinationInfo.destination}</li>
+    <img src=${destinationInfo.image} alt=${destinationInfo.alt} width="350" height="250"/>
+    `;
   });
 };
 

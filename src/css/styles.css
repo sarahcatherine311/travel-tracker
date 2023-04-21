@@ -8,7 +8,9 @@ body {
   flex-direction: column;
   text-align: center;
   height: 100%;
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  background-image: url("../images/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   transition: transform 250ms ease-out;
 }
 
@@ -44,7 +46,7 @@ header {
 .widget {
   width: 40%;
   height: 70%;
-  margin: 5% 5% 0% 5%;
+  margin: 1% 1% 0% 1%;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -55,4 +57,16 @@ header {
 .widgetTitles {
   background-color: #ffffff;
   font-size: xx-large;
+  margin-bottom: 5%;
+}
+
+form {
+  font-size: x-large;
+}
+
+input {
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin: 2% 20%
 }

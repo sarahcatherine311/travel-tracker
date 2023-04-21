@@ -7,6 +7,7 @@ import Destinations from './Destinations';
 const pastTripsList = document.querySelector('#pastTripsList');
 const totalSpent = document.querySelector('#totalSpent');
 const headerWelcome = document.querySelector('#headerWelcome');
+const calendar = document.querySelector('#calendar');
 
 let date = new Date();
 let currentDate = date.getFullYear() + "/" + ("0" + (date.getMonth()+1)).slice(-2) + "/"+ ("0" + date.getDate()).slice(-2);
@@ -23,11 +24,16 @@ window.addEventListener('load', function () {
 });
 
 function updateDOM() {
+  displayCalendar();
   generateRandomUser();
   showPastTrips();
   showTotalSpent();
   displayWelcomeMessage();
 }
+
+function displayCalendar() {
+  calendar.innerHTML = `<input id="dateInput" type="date" max="${currentDate.split('/').join('-')}" name="date" placeholder="yyyy/mm/dd" required>`;
+};
 
 function generateRandomUser() {
   newUser = travelers.getTravelerInfo(Math.floor(Math.random() * travelers.travelers.length));
@@ -54,9 +60,7 @@ function showTotalSpent() {
     acc += destinations.getCostOfDestination(trip.destinationID, trip.travelers, trip.duration);
     return acc;
   }, 0));
-  const firstHalfOfPrice = JSON.stringify(totalCost).split('').splice((totalCost.length - 3), 2).join('');
-  const secondHalfOfPrice = JSON.stringify(totalCost).split('').reverse().splice(0, 3).reverse().join('');
-  const totalPrice = `${firstHalfOfPrice},${secondHalfOfPrice}`;
-
+  let dollarUSLocale = Intl.NumberFormat('en-US');
+  let totalPrice = dollarUSLocale.format(totalCost)
   totalSpent.innerText = `Total amount spent on trips: $${totalPrice}`;
 };

@@ -8,7 +8,7 @@ class Destinations {
   }
 
   getCostOfDestination(destinationID, numTravelers, duration) {
-    const destination = this.destinations.find(destination => destination.id === destinationID);
+    const destination = this.getDestinationInfo(destinationID)
     const lodgingCost = destination.estimatedLodgingCostPerDay * duration;
     const flightCost = destination.estimatedFlightCostPerPerson * numTravelers;
     const agentFee = (lodgingCost + flightCost) * 0.1

@@ -4,7 +4,11 @@ class Trips {
   }
 
   getPastTrips(userID) {
-    return this.trips.filter(trip => trip.userID === userID);
+    return this.trips.filter(trip => trip.userID === userID && trip.status === 'approved');
+  }
+
+  getUpcomingTrips(userID) {
+    return this.trips.filter(trip => trip.userID === userID && trip.status === 'pending');
   }
 }
 

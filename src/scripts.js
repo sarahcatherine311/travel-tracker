@@ -40,7 +40,7 @@ function updateDOM() {
 }
 
 function displayCalendar() {
-  calendar.innerHTML = `<input id="dateInput" type="date" min="${currentDate.split('/').join('-')}" name="date" placeholder="yyyy/mm/dd" required>`;
+  calendar.innerHTML = `<input id="dateInput" type="date" min="${currentDate.split('/').join('-')}" name="calendar" placeholder="yyyy/mm/dd" required>`;
 };
 
 function generateRandomUser() {

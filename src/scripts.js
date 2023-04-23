@@ -14,6 +14,12 @@ const estimatedCost = document.querySelector('#estimatedCost');
 const numTravelersInput = document.querySelector('#numTravelersInput');
 const durationInput = document.querySelector('#durationInput');
 const destinationDropdown = document.querySelector('#destinationDropdown');
+const loginSection = document.querySelector('#loginSection');
+const homePage = document.querySelector('#homePage');
+const loginForm = document.querySelector('#loginForm');
+const usernameInput = document.querySelector('#usernameInput');
+const passwordInput = document.querySelector('#passwordInput');
+
 
 let date = new Date();
 let currentDate = date.getFullYear() + "/" + ("0" + (date.getMonth()+1)).slice(-2) + "/"+ ("0" + date.getDate()).slice(-2);
@@ -25,13 +31,31 @@ window.addEventListener('load', function () {
     travelers = new Travelers (data[0].travelers);
     trips = new Trips(data[1].trips);
     destinations = new Destinations(data[2].destinations);
-    updateDOM()
   });
 });
 
+loginForm.addEventListener('submit', checkUserLogin)
+
+function checkUserLogin(event) {
+  event.preventDefault();
+  const id = +usernameInput.value.match(/\d+/g);
+  const string = usernameInput.value.slice(0, 8);
+  if (
+    string === "traveler" &&
+    Number(id) > 0 &&
+    Number(id) <= 50 &&
+    passwordInput.value === "travel"
+  ) {
+    newUser = travelers.getTravelerInfo(Number(id));
+    loginSection.classList.add("hidden");
+    homePage.classList.remove('hidden');
+    updateDOM();
+  }
+}
+
 function updateDOM() {
   displayCalendar();
-  generateRandomUser();
+  // generateRandomUser();
   showPastTrips();
   showUpcomingTrips();
   showTotalSpent();
@@ -43,9 +67,9 @@ function displayCalendar() {
   calendar.innerHTML = `<input id="dateInput" type="date" min="${currentDate.split('/').join('-')}" name="calendar" placeholder="yyyy/mm/dd" required>`;
 };
 
-function generateRandomUser() {
-  newUser = travelers.getTravelerInfo(Math.floor(Math.random() * travelers.travelers.length));
-};
+// function generateRandomUser() {
+//   newUser = travelers.getTravelerInfo(Math.floor(Math.random() * travelers.travelers.length));
+// };
 
 function displayWelcomeMessage() {
   headerWelcome.innerText = `Welcome, ${newUser.name}`

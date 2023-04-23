@@ -37,7 +37,6 @@ function updateDOM() {
   showTotalSpent();
   displayWelcomeMessage();
   displayDestinationsList();
-  displayEstimatedPrice();
 }
 
 function displayCalendar() {
@@ -73,10 +72,11 @@ function showPastTrips() {
 
 function showUpcomingTrips() {
   let upcomingTrips = trips.getUpcomingTrips(newUser.id);
+  console.log(upcomingTrips)
   upcomingTrips.forEach(trip => {
     const destinationInfo = destinations.getDestinationInfo(trip.destinationID);
     upcomingTripsList.innerHTML += `
-    <li style="font-size: 1.5em">${trip.date}: ${destinationInfo.destination}</li>
+    <li style="font-size: 1.5em">${trip.date}: ${destinationInfo.destination} <span style='color: red;'>*pending*</span></li>
     <img src=${destinationInfo.image} alt=${destinationInfo.alt} width="350" height="250"/>
     `;
   });
@@ -95,7 +95,6 @@ function showTotalSpent() {
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  console.log(calendar.firstChild.value.split('-').join('/'))
   
   const data = {
     "id": parseInt(trips.trips.length + 1),
@@ -103,7 +102,7 @@ form.addEventListener('submit', (event) => {
     "destinationID": parseInt(destinationDropdown.value),
     "travelers": parseInt(numTravelersInput.value),
     "date": calendar.firstChild.value.split('-').join('/'),
-    "duration": durationInput.value,
+    "duration": parseInt(durationInput.value),
     "status": "pending",
     "suggestedActivities": []
   };
@@ -119,16 +118,23 @@ form.addEventListener('submit', (event) => {
   .then(json => console.log(json))
   .catch(err => console.log(`Error at: ${err}`));
 
-  upcomingTripsList.innerHTML = '';
-  showUpcomingTrips();
+  showUpdatedUpcomingTrips(data);
   event.target.reset();
 });
 
-function  displayEstimatedPrice() {
-  if (destinationDropdown.value && numTravelersInput.value && calendar.value && durationInput.value) {
-    const totalCost = destinations.getCostOfDestination(destinationDropdown.value, numTravelersInput.value, durationInput.value);
+function showUpdatedUpcomingTrips(data) {
+  const destinationInfo = destinations.getDestinationInfo(data.destinationID);
+  upcomingTripsList.innerHTML += `
+  <li style="font-size: 1.5em">${data.date}: ${destinationInfo.destination} <span style='color: red;'>*pending*</span></li>
+  <img src=${destinationInfo.image} alt=${destinationInfo.alt} width="350" height="250"/>
+  `;
+};
+
+form.addEventListener('input', () => {
+  if (numTravelersInput.value && durationInput.value) {
+    const totalCost = destinations.getCostOfDestination(parseInt(destinationDropdown.value), parseInt(numTravelersInput.value), parseInt(durationInput.value));
     let dollarUSLocale = Intl.NumberFormat('en-US');
     let totalPrice = dollarUSLocale.format(totalCost);
     estimatedCost.innerText = `The estimated cost of this trip is ${totalPrice}!`;
   };
-};
+});

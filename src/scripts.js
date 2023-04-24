@@ -55,7 +55,6 @@ function checkUserLogin(event) {
 
 function updateDOM() {
   displayCalendar();
-  // generateRandomUser();
   showPastTrips();
   showUpcomingTrips();
   showTotalSpent();
@@ -66,10 +65,6 @@ function updateDOM() {
 function displayCalendar() {
   calendar.innerHTML = `<input id="dateInput" type="date" min="${currentDate.split('/').join('-')}" name="calendar" placeholder="yyyy/mm/dd" required>`;
 };
-
-// function generateRandomUser() {
-//   newUser = travelers.getTravelerInfo(Math.floor(Math.random() * travelers.travelers.length));
-// };
 
 function displayWelcomeMessage() {
   headerWelcome.innerText = `Welcome, ${newUser.name}`

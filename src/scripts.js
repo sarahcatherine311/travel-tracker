@@ -64,8 +64,8 @@ function showPastTrips() {
   pastTrips.forEach(trip => {
     const destinationInfo = destinations.getDestinationInfo(trip.destinationID);
     pastTripsList.innerHTML += `
-    <li style="font-size: 1.5em">${trip.date}: ${destinationInfo.destination}</li>
-    <img src=${destinationInfo.image} alt=${destinationInfo.alt} width="350" height="250"/>
+    <li style="font-size: 1.5em">${trip.date}: ${destinationInfo.destination}
+    <img src=${destinationInfo.image} alt=${destinationInfo.alt} width="350" height="250"/></li>
     `;
   });
 };
@@ -76,8 +76,8 @@ function showUpcomingTrips() {
   upcomingTrips.forEach(trip => {
     const destinationInfo = destinations.getDestinationInfo(trip.destinationID);
     upcomingTripsList.innerHTML += `
-    <li style="font-size: 1.5em">${trip.date}: ${destinationInfo.destination} <span style='color: red;'>*pending*</span></li>
-    <img src=${destinationInfo.image} alt=${destinationInfo.alt} width="350" height="250"/>
+    <li style="font-size: 1.5em">${trip.date}: ${destinationInfo.destination} <span style='color: red;'>*pending*</span>
+    <img src=${destinationInfo.image} alt=${destinationInfo.alt} width="350" height="250"/></li>
     `;
   });
 };

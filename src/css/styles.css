@@ -18,6 +18,18 @@ body {
   justify-content: center;
 }
 
+.loginLogo{
+  height: 200px;
+  width: 350px;
+  margin-left: 25%;
+}
+
+.logo{
+  height: 120px;
+  width: 200px;
+  margin-right: 50px; 
+}
+
 .login-form {
   padding-left: 15%;
   padding-right: 15%;

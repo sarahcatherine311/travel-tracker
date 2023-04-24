@@ -16,6 +16,38 @@
       <label for="passwordInput">password:</label>
       <input type="text" id="passwordInput" placeholder="password" required>
       <input id="login" type="submit" value="Login">
+  <header id="header" class="website-header">
+    <img class="logo" alt="Travel Tracker Logo"/>
+    <h1 id="headerWelcome" class="header-welcome"></h1>
+  </header>	
+  <main id="main" class="main-section">
+    <section id="pastTrips" class="widget">
+      <h1 class="widgetTitles">Past Trips</h1>
+      <h2 id="totalSpent"></h2>
+      <div>
+        <h2>List of Past Trips:</h2>
+        <ul id="pastTripsList" class="trips-list"></ul>
+      </div>
+    </section>
+    <section id="upcomingTrips" class="widget">
+      <h1 class="widgetTitles">Upcoming Trips</h1>
+      <div>
+        <h2>List of Upcoming Trips</h2>
+        <ul id="upcomingTripsList" class="trips-list"></ul>
+      </div>
+    </section>
+    <form id="form" class="widget">
+      <h1 class="widgetTitles">Book a Trip!</h1>
+      <label for="destinationDropdown">Choose a Destination!</label>
+      <select name="destinations" id="destinationDropdown"></select>
+      <label for="calendar">Date:</label>
+      <div id="calendar"></div>
+      <label for="durationInput">Duration of Trip:</label>
+      <input type="number" id="durationInput" placeholder="Number of days Ex: 11"required>
+      <label for="numTravelersInput">Number of Travelers:</label>
+      <input type="number" id="numTravelersInput" placeholder="Number of Travelers Ex: 2"required>
+      <p id="estimatedCost">The estimated cost of this trip is... _____ </p>
+      <input id="submitTrip" type="submit" value="Submit Booking for Review">
     </form>
   </section>
   <section id="homePage" class="home-page hidden">

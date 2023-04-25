@@ -50,8 +50,8 @@ function checkUserLogin(event) {
     loginSection.classList.add("hidden");
     homePage.classList.remove('hidden');
     updateDOM();
-  }
-}
+  };
+};
 
 function updateDOM() {
   displayCalendar();
@@ -60,21 +60,21 @@ function updateDOM() {
   showTotalSpent();
   displayWelcomeMessage();
   displayDestinationsList();
-}
+};
 
 function displayCalendar() {
   calendar.innerHTML = `<input id="dateInput" type="date" min="${currentDate.split('/').join('-')}" name="calendar" placeholder="yyyy/mm/dd" required>`;
 };
 
 function displayWelcomeMessage() {
-  headerWelcome.innerText = `Welcome, ${newUser.name}`
+  headerWelcome.innerText = `Welcome, ${newUser.name}`;
 };
 
 function displayDestinationsList() {
   destinations.destinations.forEach(destination => {
     destinationDropdown.innerHTML += `
     <option value="${destination.id}">${destination.destination}</option>
-    `
+    `;
   });
 };
 
@@ -91,7 +91,6 @@ function showPastTrips() {
 
 function showUpcomingTrips() {
   let upcomingTrips = trips.getUpcomingTrips(newUser.id);
-  console.log(upcomingTrips)
   upcomingTrips.forEach(trip => {
     const destinationInfo = destinations.getDestinationInfo(trip.destinationID);
     upcomingTripsList.innerHTML += `

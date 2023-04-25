@@ -9,7 +9,8 @@ body {
   background-size: cover;
   transition: transform 250ms ease-out;
 }
-
+ 
+/* Login Page */
 .login-section {
   height: 100%;
   width: 100%;
@@ -24,16 +25,17 @@ body {
   margin-left: 25%;
 }
 
-.logo{
-  height: 120px;
-  width: 200px;
-  margin-right: 50px; 
-}
-
 .login-form {
   padding-left: 15%;
   padding-right: 15%;
   padding-top: 2%;
+}
+
+/* Home Page */
+.logo{
+  height: 120px;
+  width: 200px;
+  margin-right: 50px; 
 }
 
 .home-page{
